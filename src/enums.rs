@@ -3,6 +3,8 @@ use serde::{Deserialize, Serialize};
 use std::fmt::{Display, Formatter};
 use strum_macros::EnumIter;
 
+use partialdebug::placeholder::PartialDebug;
+
 /// Valid ways how `Reedline::read_line()` can return
 #[derive(Debug)]
 pub enum Signal {
@@ -566,6 +568,7 @@ pub(crate) enum EventStatus {
 ///
 /// Which will make sure that the given event doesn't contain [KeyEventKind::Release]
 /// and convert from [KeyEventKind::Repeat] to [KeyEventKind::Press]
+#[derive(PartialDebug)]
 pub struct ReedlineRawEvent {
     inner: Event,
 }

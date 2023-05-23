@@ -30,6 +30,10 @@ serde_json = { version = "1.0.79", optional = true }
 thiserror = "1.0.31"
 crossbeam = { version = "0.8.2", optional = true }
 
+log = "0.4.17"
+simple-logging = "2.0.2"
+partialdebug = "0.2.0"
+
 [dev-dependencies]
 tempfile = "3.3.0"
 pretty_assertions = "1.1.0"

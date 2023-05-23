@@ -1,5 +1,6 @@
 use crossterm::event::{DisableBracketedPaste, EnableBracketedPaste};
 use crossterm::execute;
+use log::{Level, log};
 
 use crate::{enums::ReedlineRawEvent, CursorConfig};
 #[cfg(feature = "bashisms")]
@@ -678,6 +679,7 @@ impl Reedline {
                 // (Text should only be `EditCommand::InsertChar`s)
                 let mut last_edit_commands = None;
                 for event in crossterm_events.drain(..) {
+                    log!(Level::Debug, "Raw event: {:?}", event);
                     match (&mut last_edit_commands, self.edit_mode.parse_event(event)) {
                         (None, ReedlineEvent::Edit(ec)) => {
                             last_edit_commands = Some(ec);
@@ -701,6 +703,7 @@ impl Reedline {
             };
 
             for event in reedline_events.drain(..) {
+                log!(Level::Debug, "Reedline event: {:?}", event);
                 match self.handle_event(prompt, event)? {
                     EventStatus::Exits(signal) => {
                         // Move the cursor below the input area, for external commands or new read_line call
