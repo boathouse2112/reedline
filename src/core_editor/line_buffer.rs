@@ -276,8 +276,7 @@ impl LineBuffer {
                 match (last_word_index, is_whitespace_str(word)) {
                     (None, true) => None,
                     (None, false) => Some(i),
-                    (Some(_), true) => None,
-                    (Some(v), false) => Some(v),
+                    (Some(v), _) => Some(v),
                 }
             })
             .unwrap_or(0)
